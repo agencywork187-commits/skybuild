@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SKYBUILD — Construction & Contracting Solutions</title>
+<meta name="description" content="SKYBUILD is a modern, professionally driven construction company delivering civil construction, structural work, renovation and a wide range of building services.">
+<meta name="theme-color" content="#0B2247">
+<link rel="icon" type="image/png" href="../assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="../assets/site-1.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600&family=Teko:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B2247; --navy2:#07172F; --navy3:#12305F; --gold:#D8AE5A; --gold-d:#A97C24; --steel:#8E97A3;
+  --paper:#F4F3EF; --text:#16233A; --muted:#667085; --line:rgba(11,34,71,.13);
+  --display:"Teko","Arial Narrow",sans-serif; --body:"Hind",system-ui,sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --stripe:repeating-linear-gradient(-45deg,var(--gold) 0 14px,var(--navy) 14px 28px);
+  --nav-h:78px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:var(--body);color:var(--text);background:var(--paper);line-height:1.65;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.wrap{width:min(1240px,100% - 40px);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:.95;text-transform:uppercase;letter-spacing:.005em}
+section{padding:clamp(70px,9vw,120px) 0;position:relative}
+.kicker{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:.8rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-d)}
+.kicker::before{content:"";width:12px;height:12px;background:var(--gold);outline:2px solid var(--navy);outline-offset:-2px;transform:rotate(45deg)}
+.h2{font-size:clamp(2.6rem,5.6vw,4.6rem);margin:12px 0 16px;color:var(--navy)}
+.h2 mark{background:none;color:var(--gold-d)}
+.lead{color:var(--muted);font-size:1.08rem;max-width:56ch}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:28px;flex-wrap:wrap;margin-bottom:46px}
+
+#progress{position:fixed;inset:0 0 auto 0;height:4px;z-index:100;background:var(--gold);transform-origin:0 50%;transform:scaleX(0)}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 26px;font-weight:600;font-size:.98rem;letter-spacing:.04em;text-transform:uppercase;position:relative;overflow:hidden;isolation:isolate;transition:color .35s,transform .35s var(--ease)}
+.btn::before{content:"";position:absolute;inset:0;z-index:-1;transform:translateY(101%);transition:transform .45s var(--ease)}
+.btn:hover::before{transform:none}
+.btn svg{width:18px;height:18px;transition:transform .35s var(--ease)}
+.btn:hover svg{transform:translateX(5px)}
+.btn-g{background:var(--gold);color:var(--navy)}.btn-g::before{background:#fff}
+.btn-o{border:2px solid rgba(255,255,255,.6);color:#fff}.btn-o::before{background:#fff}.btn-o:hover{color:var(--navy)}
+.btn-n{background:var(--navy);color:#fff}.btn-n::before{background:var(--gold)}.btn-n:hover{color:var(--navy)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:#fff;color:var(--navy);transition:box-shadow .4s}
+.nav::before{content:"";display:block;height:5px;background:var(--stripe)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;height:calc(var(--nav-h) - 5px);transition:height .4s}
+.nav.scrolled{box-shadow:0 10px 30px -18px rgba(7,23,47,.45)}
+.nav.scrolled .wrap{height:62px}
+.logo img{height:58px;width:auto;transition:height .4s}
+.nav.scrolled .logo img{height:46px}
+.links{display:flex;gap:32px;list-style:none;font-weight:600;font-size:.95rem}
+.links a{position:relative;padding:6px 0}
+.links a::after{content:"";position:absolute;left:0;bottom:0;height:3px;width:100%;background:var(--gold);transform:scaleX(0);transform-origin:right;transition:transform .4s var(--ease)}
+.links a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav .btn{padding:11px 20px;font-size:.88rem}
+.burger{display:none;width:44px;height:44px;position:relative}
+.burger span{position:absolute;left:9px;right:9px;height:2.5px;background:currentColor;transition:transform .35s var(--ease),top .35s var(--ease)}
+.burger span:nth-child(1){top:16px}.burger span:nth-child(2){top:26px}
+.menu-open .burger span:nth-child(1){top:21px;transform:rotate(45deg)}
+.menu-open .burger span:nth-child(2){top:21px;transform:rotate(-45deg)}
+
+/* HERO (split: navy panel + site photos) */
+.hero{min-height:100svh;padding:var(--nav-h) 0 0;background:var(--navy);color:#fff;display:grid;grid-template-columns:1.08fr .92fr;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px) 0 0/100% 46px,linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px) 0 0/46px 100%;mask-image:radial-gradient(900px 600px at 20% 40%,#000,transparent);-webkit-mask-image:radial-gradient(900px 600px at 20% 40%,#000,transparent)}
+.hero-txt{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;padding:40px 30px 116px max(20px,calc((100vw - 1240px)/2))}
+.tagline{display:inline-flex;align-self:flex-start;align-items:center;gap:10px;background:rgba(255,255,255,.08);border-left:4px solid var(--gold);padding:8px 16px;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+.tagline i{width:9px;height:9px;border-radius:50%;background:var(--gold);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(216,174,90,.7)}70%,100%{box-shadow:0 0 0 12px rgba(216,174,90,0)}}
+.hero h1{font-size:clamp(3.2rem,6.2vw,5.9rem);font-weight:700;margin:18px 0 14px;line-height:.88}
+.hero h1 .line{display:block;overflow:hidden;padding-top:.08em}
+.hero h1 .line > span{display:inline-block;transform:translateY(110%);animation:rise 1.1s var(--ease) forwards}
+.hero h1 .line:nth-child(2) > span{animation-delay:.14s}
+.hero h1 .line:nth-child(3) > span{animation-delay:.28s}
+.hero h1 b{font-weight:700;color:var(--gold)}
+.hero h1 .out{color:transparent;-webkit-text-stroke:2px #fff}
+@keyframes rise{to{transform:none}}
+.hero p{max-width:50ch;font-size:1.12rem;color:rgba(255,255,255,.8)}
+.fade-up{opacity:0;transform:translateY(24px);animation:fadeUp 1s var(--ease) forwards}
+@keyframes fadeUp{to{opacity:1;transform:none}}
+.d1{animation-delay:.5s}.d2{animation-delay:.65s}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+.hero-ph{position:relative;clip-path:polygon(16% 0,100% 0,100% 100%,0 100%);min-height:520px;animation:slideIn 1.4s var(--ease) both}
+@keyframes slideIn{from{clip-path:polygon(100% 0,100% 0,100% 100%,100% 100%)}}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.6s ease}
+.slide.active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover}
+.slide.active img{animation:kb 8s ease-out forwards}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.12) translateY(-1.5%)}}
+.hero-ph::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(7,23,47,.75),transparent 40%),linear-gradient(90deg,rgba(11,34,71,.45),transparent 40%)}
+.slide-ui{position:absolute;right:28px;bottom:118px;z-index:2;display:flex;align-items:center;gap:14px;font-family:var(--display);font-size:1.5rem}
+.slide-ui .bar{width:110px;height:3px;background:rgba(255,255,255,.3);position:relative;overflow:hidden}
+.slide-ui .bar i{position:absolute;inset:0;background:var(--gold);transform-origin:0 50%;transform:scaleX(0)}
+.slide-ui .bar i.run{animation:fill 6s linear forwards}
+@keyframes fill{to{transform:scaleX(1)}}
+.slide-ui small{opacity:.6;font-size:1.1rem}
+.gold-edge{position:absolute;top:0;bottom:0;right:calc(46% - 6px);width:10px;background:var(--gold);transform:skewX(-9deg);z-index:1;display:none}
+
+/* FACT BAR */
+.facts{position:relative;z-index:5;margin-top:-76px}
+.facts .wrap{background:#fff;display:grid;grid-template-columns:repeat(3,1fr);box-shadow:0 30px 60px -30px rgba(7,23,47,.5);border-bottom:6px solid var(--gold)}
+.fact{padding:28px 30px;border-right:1px solid var(--line)}
+.fact:last-child{border:0}
+.fact b{font-family:var(--display);font-size:clamp(2.6rem,4.6vw,4rem);font-weight:600;line-height:1;display:block;color:var(--navy)}
+.fact > span{color:var(--muted);font-size:.88rem;text-transform:uppercase;letter-spacing:.1em;font-weight:500}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+.wipe{overflow:hidden;position:relative}
+.wipe::after{content:"";position:absolute;inset:0;z-index:3;background:var(--gold);transform-origin:100% 50%;transition:transform 1.1s var(--ease);transition-delay:var(--d,0s)}
+.wipe.in::after{transform:scaleX(0)}
+.wipe img{width:100%;height:100%;object-fit:cover;transform:scale(1.25);transition:transform 1.8s var(--ease);transition-delay:var(--d,0s)}
+.wipe.in img{transform:none}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,6vw,90px);align-items:center}
+.frame{position:relative;padding:0 26px 26px 0}
+.frame::before{content:"";position:absolute;inset:26px 0 0 26px;border:3px solid var(--gold)}
+.frame .wipe{aspect-ratio:3/3.9;position:relative}
+.frame .cap{position:absolute;left:0;bottom:26px;z-index:4;background:var(--navy);color:#fff;padding:14px 20px;font-family:var(--display);font-size:1.4rem;text-transform:uppercase;letter-spacing:.05em;line-height:1.1;border-left:6px solid var(--gold)}
+.about p{margin-bottom:16px;color:#3a475c;font-size:1.05rem}
+.about .pull{font-family:var(--display);font-size:clamp(1.7rem,2.6vw,2.2rem);line-height:1.08;text-transform:uppercase;color:var(--navy);border-left:6px solid var(--gold);padding:6px 0 2px 20px;margin:26px 0 30px}
+
+/* WORKS */
+.works{background:var(--navy);color:#fff}
+.works::before{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px) 0 0/100% 46px,linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px) 0 0/46px 100%}
+.works .wrap{position:relative}
+.works .kicker{color:var(--gold)}.works .h2{color:#fff}.works .h2 mark{color:var(--gold)}.works .lead{color:rgba(255,255,255,.68)}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.12)}
+.work{background:var(--navy);padding:30px 26px 28px;position:relative;overflow:hidden;isolation:isolate;min-height:190px;display:flex;flex-direction:column;justify-content:space-between;gap:26px;transition:color .4s,opacity .9s var(--ease),transform .9s var(--ease)}
+.work::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--gold);transform:translateY(101%);transition:transform .5s var(--ease)}
+.work:hover::before{transform:none}.work:hover{color:var(--navy)}
+.work .top{display:flex;justify-content:space-between;align-items:flex-start}
+.work svg{width:40px;height:40px;stroke:var(--gold);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;transition:stroke .4s,transform .5s var(--ease)}
+.work:hover svg{stroke:var(--navy);transform:scale(1.12) rotate(-5deg)}
+.work .n{font-family:var(--display);font-size:1.3rem;color:rgba(255,255,255,.35);transition:color .4s}
+.work:hover .n{color:var(--navy)}
+.work h3{font-size:1.55rem;line-height:1}
+.work.cta{grid-column:span 3;background:var(--navy3);flex-direction:row;align-items:center;flex-wrap:wrap}
+.work.cta::before{display:none}.work.cta:hover{color:#fff}
+.work.cta h3{font-size:2rem}
+.work.cta p{color:rgba(255,255,255,.7);font-size:.98rem}
+
+/* PARTNERS */
+.p-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(36px,6vw,80px);align-items:center}
+.plist{list-style:none;border-top:2px solid var(--navy)}
+.plist li{display:grid;grid-template-columns:64px 1fr auto;gap:18px;align-items:center;padding:26px 14px 22px 0;border-bottom:1px solid var(--line);position:relative;transition:padding .5s var(--ease),opacity .9s var(--ease),transform .9s var(--ease);isolation:isolate}
+.plist li::before{content:"";position:absolute;inset:0;z-index:-1;background:#fff;transform:scaleX(0);transform-origin:0 50%;transition:transform .55s var(--ease)}
+.plist li:hover::before{transform:none}
+.plist li:hover{padding-left:20px}
+.plist .i{font-family:var(--display);font-size:2.6rem;line-height:1;color:transparent;-webkit-text-stroke:1.4px var(--navy)}
+.plist h3{font-size:clamp(1.9rem,3.2vw,2.6rem);color:var(--navy)}
+.plist p{color:var(--muted);font-size:.98rem}
+.plist .badge{font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;background:var(--navy);color:var(--gold);padding:7px 12px;white-space:nowrap}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
+.duo .wipe{aspect-ratio:3/4.4}
+.duo .wipe:nth-child(2){margin-top:70px}
+
+/* MARQUEE */
+.big-marquee{padding:22px 0;background:var(--gold);overflow:hidden;border-block:5px solid var(--navy)}
+.track{display:flex;width:max-content;animation:scrollx 55s linear infinite}
+.track span{font-family:var(--display);font-weight:700;font-size:clamp(2.2rem,5vw,4.2rem);line-height:1;text-transform:uppercase;padding:6px 26px 0;white-space:nowrap;display:flex;align-items:center;gap:52px;color:var(--navy)}
+.track span:nth-child(even){color:transparent;-webkit-text-stroke:1.6px var(--navy)}
+.track span::after{content:"";width:16px;height:16px;background:var(--navy);transform:rotate(45deg);flex:none}
+@keyframes scrollx{to{transform:translateX(-50%)}}
+
+/* WHY */
+.why-sec{background:#fff}
+.why-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-right:0}
+.why{padding:34px 28px;border-right:1px solid var(--line);position:relative;overflow:hidden;isolation:isolate;transition:color .4s,opacity .9s var(--ease),transform .9s var(--ease)}
+.why::before{content:"";position:absolute;inset:0;z-index:-1;background:var(--navy);transform:translateY(101%);transition:transform .55s var(--ease)}
+.why:hover::before{transform:none}.why:hover{color:#fff}
+.why svg{width:40px;height:40px;stroke:var(--gold-d);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;margin-bottom:18px;transition:stroke .4s}
+.why:hover svg{stroke:var(--gold)}
+.why h3{font-size:1.7rem;margin-bottom:6px;color:var(--navy);transition:color .4s}.why:hover h3{color:#fff}
+.why p{font-size:.95rem;color:var(--muted);transition:color .4s}.why:hover p{color:rgba(255,255,255,.75)}
+
+/* QUOTE BAND */
+.band{color:#fff;background:var(--navy2);overflow:hidden;text-align:center;padding:clamp(90px,13vw,170px) 0}
+.band > img,.contact > img{position:absolute;inset:-14% 0;width:100%;height:128%;object-fit:cover;opacity:.3;will-change:transform}
+.band blockquote{position:relative;font-family:var(--display);font-weight:600;text-transform:uppercase;font-size:clamp(2.3rem,5.6vw,4.8rem);line-height:.98;max-width:18ch;margin-inline:auto}
+.band blockquote b{color:var(--gold);font-weight:600}
+.band cite{position:relative;display:block;margin-top:18px;font-style:normal;letter-spacing:.24em;font-size:.82rem;text-transform:uppercase;color:rgba(255,255,255,.7)}
+
+/* CONTACT */
+.contact{color:#fff;background:var(--navy);overflow:hidden}
+.contact > img{opacity:.16}
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,5vw,80px);align-items:center;position:relative}
+.contact .kicker{color:var(--gold)}
+.contact .h2{font-size:clamp(3rem,6.6vw,5.6rem);color:#fff}
+.contact .h2 mark{color:var(--gold)}
+.c-list{list-style:none;margin-top:30px;display:grid;gap:18px}
+.c-list li{display:flex;gap:16px;align-items:center;font-size:1.08rem}
+.c-list .ci{width:48px;height:48px;background:var(--gold);display:grid;place-items:center;flex:none}
+.c-list svg{width:22px;height:22px;stroke:var(--navy);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.c-list small{display:block;opacity:.6;font-size:.74rem;letter-spacing:.14em;text-transform:uppercase}
+form{background:#fff;color:var(--text);padding:32px;display:grid;gap:14px;border-top:8px solid var(--gold)}
+form h3{font-size:2.1rem;color:var(--navy)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{font-size:.76rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);display:grid;gap:6px}
+input,select,textarea{font:inherit;font-size:1rem;text-transform:none;letter-spacing:0;font-weight:400;color:var(--text);padding:13px 14px;border:0;border-bottom:2px solid var(--line);background:var(--paper);width:100%;border-radius:0;transition:border-color .3s,background .3s}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--gold-d);background:#fdf6e6}
+textarea{resize:vertical;min-height:92px}
+form .btn{justify-content:center}
+#formNote{font-size:.9rem;min-height:1.3em;font-weight:500}
+
+/* FOOTER */
+footer{background:var(--navy2);color:rgba(255,255,255,.62);padding:0 0 26px}
+footer::before{content:"";display:block;height:8px;background:var(--stripe);margin-bottom:54px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1.3fr 1fr;gap:40px}
+.f-logo{display:inline-block;background:#fff;padding:10px 16px;margin-bottom:16px}
+.f-logo img{height:44px;width:auto}
+footer h4{color:#fff;font-family:var(--display);font-weight:600;font-size:1.4rem;text-transform:uppercase;letter-spacing:.04em;margin-bottom:12px}
+footer ul{list-style:none;display:grid;gap:8px;font-size:.95rem}
+footer ul a{transition:color .3s,padding .3s}footer ul a:hover{color:var(--gold);padding-left:6px}
+.f-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:46px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.84rem}
+.totop{position:fixed;right:20px;bottom:20px;width:50px;height:50px;background:var(--gold);color:var(--navy);display:grid;place-items:center;z-index:40;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .4s,transform .4s var(--ease);box-shadow:5px 5px 0 var(--navy)}
+.totop.show{opacity:1;transform:none;pointer-events:auto}
+.totop svg{width:20px;height:20px}
+
+@media (max-width:1000px){
+  .hero{grid-template-columns:1fr;min-height:0}
+  .hero-txt{padding:50px 20px 40px}
+  .hero-ph{clip-path:none;animation:none;height:70vh;min-height:420px}
+  .slide-ui{bottom:100px;right:20px}
+  .about-grid,.c-grid,.p-grid{grid-template-columns:1fr}
+  .frame{max-width:480px}
+  .grid{grid-template-columns:repeat(2,1fr)}.work.cta{grid-column:span 1}
+  .why-grid{grid-template-columns:repeat(2,1fr)}.why{border-bottom:1px solid var(--line)}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .burger{display:block}.nav .btn{display:none}
+  .links{position:fixed;inset:0;background:var(--navy);color:#fff;flex-direction:column;align-items:center;justify-content:center;gap:22px;font-family:var(--display);font-size:2.4rem;font-weight:600;text-transform:uppercase;opacity:0;pointer-events:none;transition:opacity .4s;z-index:-1}
+  .menu-open .links{opacity:1;pointer-events:auto}
+  .menu-open .burger{color:#fff}
+  .menu-open .nav{background:transparent}.menu-open .logo{background:#fff;padding:4px 8px}
+}
+@media (max-width:640px){
+  :root{--nav-h:68px}
+  .logo img{height:38px}
+  .facts .wrap{grid-template-columns:1fr}
+  .fact{padding:18px 22px;border-right:0;border-bottom:1px solid var(--line);display:flex;align-items:baseline;gap:14px}
+  .grid,.why-grid,.row,.f-grid{grid-template-columns:1fr}
+  .work{min-height:0;flex-direction:row-reverse;justify-content:flex-end;align-items:center;gap:18px;padding:20px}
+  .work .n{display:none}.work.cta{flex-direction:column;align-items:flex-start}
+  .plist li{grid-template-columns:44px 1fr}.plist .badge{grid-column:2;justify-self:start}
+  .plist .i{font-size:2rem}
+  .duo .wipe:nth-child(2){margin-top:36px}
+  .hero h1 .out{-webkit-text-stroke-width:1.4px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}.wipe::after{display:none}.wipe img{transform:none}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<header class="nav" id="nav">
+  <div class="wrap">
+    <a href="#top" class="logo" aria-label="SKYBUILD home"><img src="../assets/logo.png" alt="SKYBUILD" width="902" height="309"></a>
+    <ul class="links" id="links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#works">Works</a></li>
+      <li><a href="#partners">Partners</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn btn-n">Get a Quote</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero-txt">
+    <div class="tagline fade-up"><i></i>Construction &amp; Contracting Solutions</div>
+    <h1>
+      <span class="line"><span>We build</span></span>
+      <span class="line"><span><b>trust,</b> strength</span></span>
+      <span class="line"><span class="out">&amp; lasting value.</span></span>
+    </h1>
+    <p class="fade-up d1">A fast-growing, modern and professionally driven construction company — civil construction, structural work, renovation and a wide range of building services.</p>
+    <div class="cta-row fade-up d2">
+      <a href="#contact" class="btn btn-g">Start Your Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="#works" class="btn btn-o">Our Works</a>
+    </div>
+  </div>
+  <div class="hero-ph">
+    <div class="slide active"><img src="../assets/site-1.jpg" alt="High-rise residential tower under construction" fetchpriority="high"></div>
+    <div class="slide"><img src="../assets/site-2.jpg" alt="Multi-storey tower under construction with safety netting" loading="lazy"></div>
+    <div class="slide-ui"><span id="sNow">01</span><div class="bar"><i id="sBar"></i></div><small>02</small></div>
+  </div>
+</section>
+
+<div class="facts">
+  <div class="wrap">
+    <div class="fact reveal"><b><span data-count="13">0</span></b><span>Construction services under one roof</span></div>
+    <div class="fact reveal" style="--d:.1s"><b><span data-count="3">0</span></b><span>Official contracting partnerships</span></div>
+    <div class="fact reveal" style="--d:.2s"><b>Kalyan</b><span>Where we are building now</span></div>
+  </div>
+</div>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="about">
+  <div class="wrap about-grid">
+    <div class="frame">
+      <div class="wipe"><img src="../assets/site-2.jpg" alt="Tower under construction" loading="lazy"></div>
+      <div class="cap reveal">Built with<br>precision</div>
+    </div>
+    <div>
+      <div class="kicker reveal">About SKYBUILD</div>
+      <h2 class="h2 reveal" style="--d:.08s">More than structures. <mark>We build trust.</mark></h2>
+      <div class="reveal" style="--d:.16s">
+        <p>SKYBUILD is a fast-growing, modern and professionally driven construction company committed to delivering quality construction and contracting solutions. We specialize in civil construction, structural work, renovation, and a wide range of building services.</p>
+        <p>With a strong focus on quality, timely project delivery and customer satisfaction, we believe in building more than just structures — we build trust, reliability and long-term relationships.</p>
+        <p>Our approach combines modern construction practices, skilled workmanship and efficient project management to ensure every project is delivered with precision, transparency and excellence.</p>
+      </div>
+      <p class="pull reveal" style="--d:.24s">At SKYBUILD, we don't just build projects; we build trust, strength and lasting value.</p>
+      <a href="#contact" class="btn btn-n reveal" style="--d:.3s">Talk to Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WORKS ============ -->
+<section class="works" id="works">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <div class="kicker reveal">Our Works</div>
+        <h2 class="h2 reveal" style="--d:.08s">Foundation to finish, <mark>one team.</mark></h2>
+      </div>
+      <p class="lead reveal" style="--d:.16s">Every trade a building needs — structure, services, finishes and upkeep — handled by SKYBUILD.</p>
+    </div>
+    <div class="grid">
+      <article class="work reveal"><div class="top"><svg viewBox="0 0 24 24"><path d="M4 21V8l8-5 8 5v13M2 21h20M9 21v-5h6v5M9 10h.01M15 10h.01M9 13h.01M15 13h.01"/></svg><span class="n">01</span></div><h3>Civil Construction &amp; Structural Work</h3></article>
+      <article class="work reveal" style="--d:.05s"><div class="top"><svg viewBox="0 0 24 24"><path d="M3 6h13v6H3zM16 9h5M9.500 12v4M7 16h5v5H7z"/></svg><span class="n">02</span></div><h3>Plastering &amp; Surface Work</h3></article>
+      <article class="work reveal" style="--d:.1s"><div class="top"><svg viewBox="0 0 24 24"><path d="M4 3h13v6H4zM17 6h3v6h-8v3M10 15h4v6h-4z"/></svg><span class="n">03</span></div><h3>Painting &amp; Finishing Work</h3></article>
+      <article class="work reveal" style="--d:.15s"><div class="top"><svg viewBox="0 0 24 24"><path d="M3 3h18v18H3zM3 12h18M12 3v18M3 7.500h9M12 16.500h9"/></svg><span class="n">04</span></div><h3>Flooring &amp; Tiling Work</h3></article>
+      <article class="work reveal"><div class="top"><svg viewBox="0 0 24 24"><path d="M12 3s6 6.500 6 11a6 6 0 01-12 0c0-4.500 6-11 6-11zM9 14a3 3 0 003 3"/></svg><span class="n">05</span></div><h3>Waterproofing &amp; Leakage Solutions</h3></article>
+      <article class="work reveal" style="--d:.05s"><div class="top"><svg viewBox="0 0 24 24"><path d="M3 10h10a4 4 0 014 4v1M14 15h6v3h-6zM7 10V6M4.500 6h5M17 20.500v.500"/></svg><span class="n">06</span></div><h3>Plumbing &amp; Sanitary Work</h3></article>
+      <article class="work reveal" style="--d:.1s"><div class="top"><svg viewBox="0 0 24 24"><path d="M13 2L5 14h6l-1 8 8-12h-6z"/></svg><span class="n">07</span></div><h3>Electrical &amp; MEP Work</h3></article>
+      <article class="work reveal" style="--d:.15s"><div class="top"><svg viewBox="0 0 24 24"><path d="M12 3c1 4 5.500 5.500 5.500 10.500a5.500 5.500 0 01-11 0c0-2 1-3.500 2.200-4.500.300 2 1.300 2.800 2 2.800C10.700 9 10.500 6 12 3z"/></svg><span class="n">08</span></div><h3>Fire Safety &amp; Fire Protection Work</h3></article>
+      <article class="work reveal"><div class="top"><svg viewBox="0 0 24 24"><path d="M5 4h14v3h-5v10h5v3H5v-3h5V7H5z"/></svg><span class="n">09</span></div><h3>Fabrication &amp; Metal Work</h3></article>
+      <article class="work reveal" style="--d:.05s"><div class="top"><svg viewBox="0 0 24 24"><path d="M5 21V3h14v18M3 21h18M12 3v18M5 12h14"/></svg><span class="n">10</span></div><h3>Doors, Windows &amp; Glass Work</h3></article>
+      <article class="work reveal" style="--d:.1s"><div class="top"><svg viewBox="0 0 24 24"><path d="M3 4h18M12 4v5M6.500 15a5.500 5.500 0 0111 0zM10 18.500h4"/></svg><span class="n">11</span></div><h3>False Ceiling &amp; Interior Work</h3></article>
+      <article class="work reveal" style="--d:.15s"><div class="top"><svg viewBox="0 0 24 24"><path d="M8 3L4 21M16 3l4 18M12 4v3M12 10.500v3M12 17v3"/></svg><span class="n">12</span></div><h3>External Development &amp; Infrastructure</h3></article>
+      <article class="work reveal"><div class="top"><svg viewBox="0 0 24 24"><path d="M15 4a5 5 0 00-4.600 6.900L3 18.300V21h2.700l7.400-7.400A5 5 0 0020 9l-3 3-3-1-1-3z"/></svg><span class="n">13</span></div><h3>Repair, Renovation &amp; Maintenance</h3></article>
+      <article class="work cta reveal" style="--d:.05s"><div><h3>Have a project in mind?</h3><p>Tell us what you need built, repaired or finished.</p></div><a href="#contact" class="btn btn-g">Get a Quote <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTNERS ============ -->
+<section id="partners">
+  <div class="wrap p-grid">
+    <div>
+      <div class="kicker reveal">Our Partnerships</div>
+      <h2 class="h2 reveal" style="--d:.08s">Official contracting <mark>partners.</mark></h2>
+      <p class="lead reveal" style="--d:.16s;margin-bottom:34px">Developers in Kalyan trust SKYBUILD as their official contracting partner.</p>
+      <ul class="plist">
+        <li class="reveal"><span class="i">01</span><div><h3>Morya Sports City</h3><p>with Morya Builders · Kalyan</p></div><span class="badge">Official Contracting Partner</span></li>
+        <li class="reveal" style="--d:.1s"><span class="i">02</span><div><h3>Sai Narayan</h3><p>Kalyan</p></div><span class="badge">Official Contracting Partner</span></li>
+        <li class="reveal" style="--d:.2s"><span class="i">03</span><div><h3>Bhumi World</h3><p>Kalyan</p></div><span class="badge">Official Contracting Partner</span></li>
+      </ul>
+    </div>
+    <div class="duo">
+      <div class="wipe"><img src="../assets/site-1.jpg" alt="Residential tower under construction" loading="lazy"></div>
+      <div class="wipe" style="--d:.2s"><img src="../assets/site-2.jpg" alt="Tower under construction" loading="lazy"></div>
+    </div>
+  </div>
+</section>
+
+<div class="big-marquee" aria-hidden="true">
+  <div class="track" id="track"><span>Civil</span><span>Structural</span><span>Plastering</span><span>Painting</span><span>Flooring</span><span>Waterproofing</span><span>Plumbing</span><span>Electrical &amp; MEP</span><span>Fire Safety</span><span>Fabrication</span><span>Interiors</span><span>Renovation</span></div>
+</div>
+
+<!-- ============ WHY ============ -->
+<section class="why-sec" id="why">
+  <div class="wrap">
+    <div class="head"><div>
+      <div class="kicker reveal">Why SKYBUILD</div>
+      <h2 class="h2 reveal" style="--d:.08s">Precision. Transparency. <mark>Excellence.</mark></h2>
+    </div></div>
+    <div class="why-grid">
+      <div class="why reveal"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 5-3.500 8-8 9-4.500-1-8-4-8-9V6zM9 12l2 2 4-4"/></svg><h3>Quality First</h3><p>A strong focus on quality in every construction and contracting job.</p></div>
+      <div class="why reveal" style="--d:.1s"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><h3>Timely Delivery</h3><p>Efficient project management to keep every project on schedule.</p></div>
+      <div class="why reveal" style="--d:.2s"><svg viewBox="0 0 24 24"><path d="M14 4l6 6-9 9H5v-6zM12 6l6 6M3 21h18"/></svg><h3>Skilled Workmanship</h3><p>Modern construction practices carried out by skilled hands.</p></div>
+      <div class="why reveal" style="--d:.3s"><svg viewBox="0 0 24 24"><path d="M2 12s3.500-7 10-7 10 7 10 7-3.500 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><h3>Transparency</h3><p>Clear communication and long-term relationships built on trust.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTE BAND ============ -->
+<section class="band">
+  <img data-parallax src="../assets/site-1.jpg" alt="" loading="lazy">
+  <blockquote class="reveal">We build more than structures — we build <b>trust, reliability</b> &amp; long-term relationships.</blockquote>
+  <cite class="reveal" style="--d:.15s">SKYBUILD</cite>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contact">
+  <img data-parallax src="../assets/site-2.jpg" alt="" loading="lazy">
+  <div class="wrap c-grid">
+    <div class="reveal">
+      <div class="kicker">Get In Touch</div>
+      <h2 class="h2">Planning to build?<br><mark>Let's talk.</mark></h2>
+      <p style="color:rgba(255,255,255,.8);max-width:46ch">Share your requirement and the SKYBUILD team will get back to you.</p>
+      <!-- PLACEHOLDER contact details: replace phone, email and address -->
+      <ul class="c-list">
+        <li><span class="ci"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.500 1.500a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></span><div><small>Call us</small>+91 00000 00000</div></li>
+        <li><span class="ci"><svg viewBox="0 0 24 24"><path d="M3 6h18v12H3zM3 7l9 6 9-6"/></svg></span><div><small>Email</small>info@example.com</div></li>
+        <li><span class="ci"><svg viewBox="0 0 24 24"><path d="M12 21s7-6.200 7-11a7 7 0 00-14 0c0 4.800 7 11 7 11z"/><circle cx="12" cy="10" r="2.500"/></svg></span><div><small>Office</small>Office address to be added</div></li>
+      </ul>
+    </div>
+    <form id="quoteForm" class="reveal" style="--d:.15s" novalidate>
+      <h3>Request a Quote</h3>
+      <div class="row">
+        <label>Name<input name="name" required placeholder="Your name" autocomplete="name"></label>
+        <label>Mobile<input name="phone" required type="tel" inputmode="numeric" pattern="[0-9+ ]{10,14}" placeholder="10-digit mobile" autocomplete="tel"></label>
+      </div>
+      <div class="row">
+        <label>Work required<select name="type">
+          <option>Civil Construction &amp; Structural Work</option><option>Plastering &amp; Surface Work</option><option>Painting &amp; Finishing Work</option><option>Flooring &amp; Tiling Work</option><option>Waterproofing &amp; Leakage Solutions</option><option>Plumbing &amp; Sanitary Work</option><option>Electrical &amp; MEP Work</option><option>Fire Safety &amp; Fire Protection Work</option><option>Fabrication &amp; Metal Work</option><option>Doors, Windows &amp; Glass Work</option><option>False Ceiling &amp; Interior Work</option><option>External Development &amp; Infrastructure</option><option>Repair, Renovation &amp; Maintenance</option>
+        </select></label>
+        <label>Location<input name="city" placeholder="Project location"></label>
+      </div>
+      <label>Requirement<textarea name="msg" placeholder="Tell us about your project…"></textarea></label>
+      <button class="btn btn-n" type="submit">Send Enquiry <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <div id="formNote" role="status"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <a href="#top" class="f-logo"><img src="../assets/logo.png" alt="SKYBUILD" width="902" height="309" loading="lazy"></a>
+        <p style="max-width:34ch;font-size:.95rem">A modern, professionally driven construction company delivering quality construction and contracting solutions.</p>
+      </div>
+      <div><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#works">Works</a></li><li><a href="#partners">Partners</a></li><li><a href="#contact">Contact</a></li></ul></div>
+      <div><h4>Works</h4><ul><li><a href="#works">Civil &amp; Structural</a></li><li><a href="#works">Waterproofing</a></li><li><a href="#works">Electrical, Plumbing &amp; Fire</a></li><li><a href="#works">Interiors &amp; Finishing</a></li><li><a href="#works">Repair &amp; Renovation</a></li></ul></div>
+      <div><h4>Partner Projects</h4><ul><li>Morya Sports City, Kalyan</li><li>Sai Narayan, Kalyan</li><li>Bhumi World, Kalyan</li></ul></div>
+    </div>
+    <div class="f-bottom"><span>© <span id="yr"></span> SKYBUILD. All rights reserved.</span><span>Building trust, strength &amp; lasting value.</span></div>
+  </div>
+</footer>
+
+<a href="#top" class="totop" id="totop" aria-label="Back to top"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M6 11l6-6 6 6"/></svg></a>
+
+<script>
+(() => {
+  const $ = (s, r = document) => r.querySelector(s), $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Hero slideshow */
+  const slides = $$('.slide'), sNow = $('#sNow'), sBar = $('#sBar');
+  let cur = 0;
+  const runBar = () => { sBar.classList.remove('run'); void sBar.offsetWidth; sBar.classList.add('run'); };
+  runBar();
+  if (!reduce) setInterval(() => {
+    slides[cur].classList.remove('active');
+    cur = (cur + 1) % slides.length;
+    slides[cur].classList.add('active');
+    sNow.textContent = String(cur + 1).padStart(2, '0');
+    runBar();
+  }, 6000);
+
+  /* Seamless marquee */
+  const track = $('#track'); track.innerHTML += track.innerHTML;
+
+  /* Scroll: nav shadow, progress bar, back-to-top, parallax backgrounds */
+  const nav = $('#nav'), prog = $('#progress'), totop = $('#totop'), par = $$('[data-parallax]');
+  let ticking = false;
+  const onScroll = () => {
+    const y = scrollY, max = document.documentElement.scrollHeight - innerHeight;
+    nav.classList.toggle('scrolled', y > 60);
+    totop.classList.toggle('show', y > 700);
+    prog.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    if (!reduce) par.forEach(img => {
+      const r = img.parentElement.getBoundingClientRect();
+      if (r.top < innerHeight && r.bottom > 0) img.style.transform = `translateY(${(r.top / innerHeight) * -9}%)`;
+    });
+    ticking = false;
+  };
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  onScroll();
+
+  /* Mobile menu */
+  $('#burger').addEventListener('click', () => document.body.classList.toggle('menu-open'));
+  $$('#links a').forEach(a => a.addEventListener('click', () => document.body.classList.remove('menu-open')));
+
+  /* Reveal on scroll + counters */
+  const count = n => {
+    const end = +n.dataset.count, t0 = performance.now(), dur = 1400;
+    const tick = t => {
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      n.textContent = Math.round(end * e);
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    reduce ? (n.textContent = end) : requestAnimationFrame(tick);
+  };
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    e.target.classList.add('in');
+    $$('[data-count]', e.target).forEach(count);
+    io.unobserve(e.target);
+  }), { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+  $$('.reveal, .wipe').forEach(n => io.observe(n));
+
+  /* Enquiry form — NOT CONNECTED YET.
+     Set WHATSAPP to the business number (digits only with country code, e.g. '919876543210')
+     and the form will open a pre-filled WhatsApp chat. */
+  const WHATSAPP = '';
+  const form = $('#quoteForm'), note = $('#formNote');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    if (!form.checkValidity()) { note.style.color = '#b42318'; note.textContent = 'Please enter your name and a valid mobile number.'; form.reportValidity(); return; }
+    const d = Object.fromEntries(new FormData(form));
+    note.style.color = '#1b7a43';
+    if (WHATSAPP) {
+      const text = ['New enquiry — SKYBUILD website', 'Name: ' + d.name, 'Mobile: ' + d.phone, 'Work: ' + d.type, 'Location: ' + d.city, 'Requirement: ' + d.msg].map(encodeURIComponent).join('%0A');
+      window.open(`https://wa.me/${WHATSAPP}?text=${text}`, '_blank', 'noopener');
+      note.textContent = 'Opening WhatsApp to send your enquiry…';
+    } else {
+      note.textContent = 'Demo mode: the form is not connected yet — enquiry was not sent.';
+    }
+  });
+
+  $('#yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
